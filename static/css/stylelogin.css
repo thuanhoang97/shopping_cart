@@ -35,3 +35,7 @@ div.edit-inputN {
 img.mb-4 {
 	margin-bottom: 0!important;
 }
+
+#warnning{
+	color: red;
+}
