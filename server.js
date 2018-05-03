@@ -22,21 +22,32 @@ database.init(function(err){
 		}));
 		app.use(function(req, res, next){	
 		console.log('method: ',req.method, 'url: ', req.url);
+		// console.log('Session:', req.session);
 		next();
 		});
 		app.set('views', path.join(__dirname, '/views'));
 		app.set('view engine', 'ejs');
 
-		app.use(express.static(path.join(__dirname, 'static/html')));
+		// app.use(express.static(path.join(__dirname, 'views')));
 		app.use('/css', express.static(path.join(__dirname,'static/css')));
 		app.use('/img', express.static(path.join(__dirname, 'static/img')));
 		app.use('/js', express.static(path.join(__dirname, 'static/js')));
 		app.use('/video', express.static(path.join(__dirname, 'static/video')));
 
-		
+		app.get('/', routes.home);
+
+		app.get('/admin', routes.admin.form);
+		app.post('/admin/login', routes.admin.login);
+		app.get('/admin/logout', routes.admin.logout);
+		app.get('/admin/add-product', routes.admin.addProductForm);
+		app.post('/admin/add-product', routes.admin.addProduct);
+
 		app.get('/login-register', routes.loginRegister);
 		app.post('/login', routes.login.submit);
 		app.post('/register', routes.register.submit);
+		app.post('/logout', routes.logout)
+
+		app.get('/product/:name', routes.productForm);
 
 		app.listen(1997, function(){
 		console.log('Server is running on port 1997...');

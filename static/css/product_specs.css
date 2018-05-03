@@ -1,0 +1,20 @@
+body {
+	background: skyblue;
+	color: rgba(255, 255, 255, 0.9);
+	font-family: 'Georgia', serif;
+	font-size: 20px;
+	height: 2000px;
+	position: relative;
+	padding-bottom: 50px 550px;
+}
+
+form {
+	text-decoration: none;
+	color: #000;
+	padding: 7px 15px; 
+}
+form #screen {
+	text-decoration: none;
+	color: blue;
+	padding: 7px 15px;
+}

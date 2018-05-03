@@ -3,15 +3,17 @@ var User = require('../lib/user');
 
 
 exports.submit = function(req, res){
-	console.log(req.body);
+	//console.log(req.body);
 	var email = req.body.email;
 	var password = req.body.password;
 	var warnning = "";
 
 	User.getByEmail(email, function(user){
 		if(user.id){
-			console.log(user);
+			//console.log(user);
 			if(user.email === email && user.password === password){
+				req.session.user = {id: user.id, email: user.email}
+				console.log(req.session.user);
 				return res.redirect('/');
 			}
 			else{
