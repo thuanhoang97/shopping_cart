@@ -1,0 +1,148 @@
+<style type="text/css">.table&amp;amp;gt;tbody&amp;amp;gt;tr&amp;amp;gt;td, .table&amp;amp;gt;tfoot&amp;amp;gt;tr&amp;amp;gt;td {  
+vertical-align: middle;
+}
+ 
+@media screen and (max-width: 600px) { 
+table#cart tbody td .form-control { 
+width:20%; 
+display: inline !important;
+} 
+ 
+.actions .btn { 
+width:36%; 
+margin:1.5em 0;
+} 
+ 
+.actions .btn-info { 
+float:left;
+} 
+ 
+.actions .btn-danger { 
+float:right;
+} 
+ 
+table#cart thead {
+display: none;
+} 
+ 
+table#cart tbody td {
+display: block;
+padding: .6rem;
+min-width:320px;
+} 
+ 
+table#cart tbody tr td:first-child {
+background: #333;
+color: #fff;
+} 
+ 
+table#cart tbody td:before { 
+content: attr(data-th);
+font-weight: bold; 
+display: inline-block;
+width: 8rem;
+} 
+ 
+table#cart tfoot td {
+display:block;
+} 
+table#cart tfoot td .btn {
+display:block;
+}
+}</style>
+
+body {
+
+}
+
+ul.dropdownmyself{
+	margin-bottom: 0px;
+	margin-left: 20%;
+}
+a.login-register {
+	color: white!important;
+}
+a.black{
+	color: black!important;
+	text-decoration: none;
+}
+a.white{
+	text-decoration: none;
+	color: white!important;
+}
+form.form-inline{
+	width: 40%;
+}
+
+div.editIpX {
+	margin-bottom: 0!important;
+	margin-top: 0!important;
+	padding-bottom: 0!important;
+	padding-top: 0!important;
+}
+
+h1.ipad {
+	font-size: 120px;
+}
+
+div.text-color{
+	color: black!important;
+	background-color: #FAFAFA;
+}
+div.text-color2{
+	color: black!important;
+	background-color: #EEEEEE;
+}
+h2 {
+	font-size: 42px;
+}
+
+div.color-part2{
+	background-color:  #FAFCFB;
+}
+
+div.background {
+	color: white!important;
+	width: 1262px;
+    height: 570px; 
+    background-size: 1262px 570px;
+    background-position: center;
+}
+img.edit-img{
+	padding-bottom: 1%;
+}
+div.d-md-flex{
+	height: 570px!important;
+}
+div.my-3{
+	margin:0!important;
+	padding: 0!important;
+}    
+div.text-color3{
+	color: white!important;
+	background: linear-gradient(to bottom, #498393 0%, #498393 10%, #98d8e8 100%);
+}
+h6.update{
+	color: #609BFE;
+	margin: 0;
+	margin-bottom: 1px;
+}
+h1.ios{
+	margin: 0;
+}
+p.under-update{
+	font-size: 23px;
+	margin-bottom: 10%;
+}
+p.under-update1{
+	font-size: 21px;
+	margin-bottom: 5%;
+}
+.container-bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+
+/************************************************************/
+
