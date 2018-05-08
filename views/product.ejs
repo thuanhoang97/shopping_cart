@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
-  <title>Iphone X</title>
+  <title><%= product.name%></title>
   <link rel="shortcut icon" href="/img/eyes.jpg">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
@@ -19,11 +19,11 @@
     <!-- Fixed Top -->
   <% include partials/nav.ejs %>
 
-          <div class="containerIpx">
+  <div class="containerIpx">
   <!-- Left Column / Headphones Image -->
   <div class="left-column">
-    <img data-image="black" src="/img/iphoneblack.jpg" alt="">
-    <img data-image="silver" class="active" src="/img/iphonesilver.jpg" alt="">
+    <!-- <img data-image="black" src="/img/iphoneblack.jpg" alt=""> -->
+    <img data-image="silver" class="active" src="/img/<%= productSpecs.imgPath%>" alt="">
   </div>
   
   
@@ -32,13 +32,12 @@
   
     <!-- Product Description -->
     <div class="product-description">
-      <h1><%=name %></h1>
-      <p><%=product.slogan%></p>
+      <h1><%=product.name %></h1>
     </div>
     <div class="text-left">
       <h4>Thông số kỹ thuật</h4>
       <ul class="parameter">
-            <li class="g6459_79_77"><span>Màn hình:</span><div><%= product.screen %></div></li><li class="g72"><span>Hệ điều hành:</span><div><%= product.os%></div></li><li class="g27"><span>Camera sau:</span><div><%= product.backCamera %></div></li><li class="g29"><span>Camera trước:</span><div><%= product.frontCamera %></div></li><li class="g6059"><span>CPU:</span><div><%= product.cpu %></div></li><li class="g50"><span>RAM:</span><div><%= product.ram %></div></li><li class="g49"><span>Bộ nhớ trong:</span><div><%= product.memory %></div></li><li class="g6339_6463"><span>Thẻ SIM:</span><div><%= product.sim %></div></li><li class="g84_10882"><span>Dung lượng pin:</span><div><%= product.pin %></div></li><li class="g84_10882"><span>Giá sản phẩm:</span><div><%= product.price %></div></li>
+            <li class="g6459_79_77"><span>Màn hình:</span><div><%= productSpecs.screen %></div></li><li class="g72"><span>Hệ điều hành:</span><div><%= productSpecs.os%></div></li><li class="g27"><span>Camera sau:</span><div><%= productSpecs.backCamera %></div></li><li class="g29"><span>Camera trước:</span><div><%= productSpecs.frontCamera %></div></li><li class="g6059"><span>CPU:</span><div><%= productSpecs.cpu %></div></li><li class="g50"><span>RAM:</span><div><%= productSpecs.ram %></div></li><li class="g49"><span>Bộ nhớ trong:</span><div><%= productSpecs.memory %></div></li><li class="g6339_6463"><span>Thẻ SIM:</span><div><%= productSpecs.sim %></div></li><li class="g84_10882"><span>Dung lượng pin:</span><div><%= productSpecs.battery %></div></li><li class="g84_10882"><span>Giá sản phẩm:</span><div><%= product.price %></div></li>
         </ul>
 
     </div>
@@ -46,7 +45,7 @@
     <div class="product-configuration">
   
       <!-- Product Color -->
-      <div class="product-color">
+     <!--  <div class="product-color">
         <span>Color</span>
   
         <div class="color-choose">
@@ -59,7 +58,7 @@
             <label for="black"><span></span></label>
           </div>
         </div>
-      </div>
+      </div> -->
   
       <!-- Cable Configuration -->
       <div class="cable-config">
@@ -68,7 +67,11 @@
     </div>
   
     <!-- Product Pricing -->
-      <div><a href="#" class="cart-btn">Add to cart</a></div>
+      <div>
+        <form method="POST" action="/add-to-cart/<%= product.name%>">
+        <a href="#" class="cart-btn" onclick="$(this).closest('form').submit();">Add to cart</a>
+        </form>
+      </div>
         
       </div>
   </div>

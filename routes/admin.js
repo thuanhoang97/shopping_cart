@@ -27,16 +27,14 @@ exports.addProductForm = function(req, res){
 
 exports.addProduct = function(req, res){
 	console.log(req.body);
-	var product = new Product(req.body);
-	console.log(product);
-	product.save(function(err){
+	var newProduct = req.body;
+
+	Product.save(newProduct, function(err){
 		if(err){
 			console.log(err);
 			res.redirect('/admin/add-product');
-		}
-		else{
+		}else{
 			res.redirect('/admin');
 		}
-	})
-
+	});
 };

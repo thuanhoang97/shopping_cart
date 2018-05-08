@@ -42,10 +42,12 @@ database.init(function(err){
 		app.get('/admin/add-product', routes.admin.addProductForm);
 		app.post('/admin/add-product', routes.admin.addProduct);
 
-		app.get('/login-register', routes.loginRegister);
-		app.post('/login', routes.login.submit);
-		app.post('/register', routes.register.submit);
-		app.post('/logout', routes.logout)
+		app.get('/login-register', routes.loginRegisterForm);
+		app.get('/:id/cart', routes.user.showCart);
+		app.post('/login', routes.user.login);
+		app.post('/register', routes.user.register);
+		app.post('/logout', routes.user.logout);
+		app.post('/add-to-cart/:name', routes.user.addToCart);
 
 		app.get('/product/:name', routes.productForm);
 
