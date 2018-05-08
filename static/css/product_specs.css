@@ -1,20 +1,138 @@
 body {
-	background: skyblue;
-	color: rgba(255, 255, 255, 0.9);
-	font-family: 'Georgia', serif;
-	font-size: 20px;
-	height: 2000px;
-	position: relative;
-	padding-bottom: 50px 550px;
+
 }
 
-form {
-	text-decoration: none;
-	color: #000;
-	padding: 7px 15px; 
+div.margin-bottom{
+	margin-bottom: 8%;
+	margin-top: 5%;
 }
-form #screen {
-	text-decoration: none;
-	color: blue;
-	padding: 7px 15px;
+
+form.form-signin {
+	align-items: center;
 }
+
+div.edit-input {
+	margin-left: 25%;
+	width: 50%;
+	margin-bottom: 2%;
+}
+
+p.forget-pass {
+
+}
+
+div.edit-button{
+	margin-left: 25%;
+	width: 50%;
+}
+
+div.edit-inputN {
+	margin-left: 15%;
+	width: 70%;
+	margin-bottom: 2%;
+}
+
+img.mb-4 {
+	margin-bottom: 0!important;
+}
+
+body {
+
+}
+
+ul.dropdownmyself{
+	margin-bottom: 0px;
+	margin-left: 20%;
+}
+a.login-register {
+	color: white!important;
+}
+a.black{
+	color: black!important;
+	text-decoration: none;
+}
+a.white{
+	text-decoration: none;
+	color: white!important;
+}
+form.form-inline{
+	width: 40%;
+}
+
+div.editIpX {
+	margin-bottom: 0!important;
+	margin-top: 0!important;
+	padding-bottom: 0!important;
+	padding-top: 0!important;
+}
+
+h1.ipad {
+	font-size: 120px;
+}
+
+div.text-color{
+	color: black!important;
+	background-color: #FAFAFA;
+}
+div.text-color2{
+	color: black!important;
+	background-color: #EEEEEE;
+}
+h2 {
+	font-size: 42px;
+}
+
+div.color-part2{
+	background-color:  #FAFCFB;
+}
+
+div.background {
+	color: white!important;
+	width: 1262px;
+    height: 570px; 
+    background-size: 1262px 570px;
+    background-position: center;
+}
+img.edit-img{
+	padding-bottom: 1%;
+}
+div.d-md-flex{
+	height: 570px!important;
+}
+div.my-3{
+	margin:0!important;
+	padding: 0!important;
+}    
+div.text-color3{
+	color: white!important;
+	background: linear-gradient(to bottom, #498393 0%, #498393 10%, #98d8e8 100%);
+}
+h6.update{
+	color: #609BFE;
+	margin: 0;
+	margin-bottom: 1px;
+}
+h1.ios{
+	margin: 0;
+}
+p.under-update{
+	font-size: 23px;
+	margin-bottom: 10%;
+}
+p.under-update1{
+	font-size: 21px;
+	margin-bottom: 5%;
+}
+.container-bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+
+/************************************************************/
+div.rowbody{
+	margin-left: 25%;
+	text-align: center;
+}
+
+
