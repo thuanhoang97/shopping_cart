@@ -23,7 +23,7 @@
   <!-- Left Column / Headphones Image -->
   <div class="left-column">
     <!-- <img data-image="black" src="/img/iphoneblack.jpg" alt=""> -->
-    <img data-image="silver" class="active" src="/img/<%= productSpecs.imgPath%>" alt="">
+    <img data-image="silver" class="active" src="/img/<%= product.imgPath%>" alt="">
   </div>
   
   
@@ -37,7 +37,7 @@
     <div class="text-left">
       <h4>Thông số kỹ thuật</h4>
       <ul class="parameter">
-            <li class="g6459_79_77"><span>Màn hình:</span><div><%= productSpecs.screen %></div></li><li class="g72"><span>Hệ điều hành:</span><div><%= productSpecs.os%></div></li><li class="g27"><span>Camera sau:</span><div><%= productSpecs.backCamera %></div></li><li class="g29"><span>Camera trước:</span><div><%= productSpecs.frontCamera %></div></li><li class="g6059"><span>CPU:</span><div><%= productSpecs.cpu %></div></li><li class="g50"><span>RAM:</span><div><%= productSpecs.ram %></div></li><li class="g49"><span>Bộ nhớ trong:</span><div><%= productSpecs.memory %></div></li><li class="g6339_6463"><span>Thẻ SIM:</span><div><%= productSpecs.sim %></div></li><li class="g84_10882"><span>Dung lượng pin:</span><div><%= productSpecs.battery %></div></li><li class="g84_10882"><span>Giá sản phẩm:</span><div><%= product.price %></div></li>
+            <li class="g6459_79_77"><span>Màn hình:</span><div><%= product.specs.screen %></div></li><li class="g72"><span>Hệ điều hành:</span><div><%= product.specs.os%></div></li><li class="g27"><span>Camera sau:</span><div><%= product.specs.backCamera %></div></li><li class="g29"><span>Camera trước:</span><div><%= product.specs.frontCamera %></div></li><li class="g6059"><span>CPU:</span><div><%= product.specs.cpu %></div></li><li class="g50"><span>RAM:</span><div><%= product.specs.ram %></div></li><li class="g49"><span>Bộ nhớ trong:</span><div><%= product.specs.memory %></div></li><li class="g6339_6463"><span>Thẻ SIM:</span><div><%= product.specs.sim %></div></li><li class="g84_10882"><span>Dung lượng pin:</span><div><%= product.specs.battery %></div></li><li class="g84_10882"><span>Giá sản phẩm:</span><div><%= product.price %><e> VND</e></div></li>
         </ul>
 
     </div>
@@ -61,14 +61,14 @@
       </div> -->
   
       <!-- Cable Configuration -->
-      <div class="cable-config">
+      <!-- <div class="cable-config">
         <a href="#">How to configurate your phones</a>
-      </div>
+      </div> -->
     </div>
   
     <!-- Product Pricing -->
       <div>
-        <form method="POST" action="/add-to-cart/<%= product.name%>">
+        <form method="POST" action="/add-to-cart/<%= product.id%>">
         <a href="#" class="cart-btn" onclick="$(this).closest('form').submit();">Add to cart</a>
         </form>
       </div>

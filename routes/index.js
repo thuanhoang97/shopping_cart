@@ -8,25 +8,40 @@ exports.admin = require('./admin');
 exports.user = require('./user');
 
 
+exports.getSession = function(req, res, next){
+	res.locals.user = req.session.user || null;
+	next();
+};
+
 exports.loginRegisterForm = function(req, res){
-	res.render('login-register', {session:req.session});
-	req.session.warnText = null;
+	res.locals.warning = req.session.warning || "";
+	console.log(res.locals.warning);
+	res.render('login-register');
+	delete req.session.warnning;
 };
 
 exports.home = function(req, res){
-	res.render('index', {session:req.session});
+	res.render('index');
 };
 
 exports.productForm = function(req, res){
 	var productName = req.params.name;
-	Product.getProductSpecsByName(productName, function(productSpecs){
-		Product.getByName(productName, function(product){
-			console.log(productSpecs);
-			res.render('product', {
-				session: req.session,
-				productSpecs: productSpecs,
-				product: product
+	Product.getIdByName(productName, function(id){
+		if(id){
+			var product = new Product(id);
+			product.retrieveInfo(function(err){
+				if(!err){
+					product.retrieveSpecs(function(err){
+						product.price = product.price.toLocaleString();
+						res.render('product',{
+							product: product
+						});
+					});
+				}
 			});
-		});
+		}else{
+			res.redirect('/');
+		}
+
 	});
 };

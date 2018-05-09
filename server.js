@@ -20,10 +20,12 @@ database.init(function(err){
 		app.use(session({
 		secret: 'js'
 		}));
+		app.use(routes.getSession);
 		app.use(function(req, res, next){	
 		console.log('method: ',req.method, 'url: ', req.url);
 		// console.log('Session:', req.session);
-		next();
+
+			next();
 		});
 		app.set('views', path.join(__dirname, '/views'));
 		app.set('view engine', 'ejs');
@@ -47,7 +49,8 @@ database.init(function(err){
 		app.post('/login', routes.user.login);
 		app.post('/register', routes.user.register);
 		app.post('/logout', routes.user.logout);
-		app.post('/add-to-cart/:name', routes.user.addToCart);
+		app.post('/add-to-cart/:id', routes.user.addToCart);
+		app.post('/del-from-cart/:date', routes.user.delFromCart);
 
 		app.get('/product/:name', routes.productForm);
 

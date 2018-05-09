@@ -1,74 +1,168 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Product</title>
-	<link rel="stylesheet" type="text/css" href="/css/product_specs.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>add product</title>
+  <link rel="shortcut icon" href="/img/eyes.jpg">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+  <link href="/css/product.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/product_specs.css">
+
+  
 </head>
-<body>
-	<form method="POST" action="add-product">
-		<a href="#">Thông Số Kỹ Thuật</a>
-		<p>
-			Tên máy:     
-			<input type="text" name="name">
-		</p>
-		<p>
-			Màn hình:     
-			<input type="text" name="screen">
-		</p>
+<body class="text-center">
+  <!-- Fixed Top -->
+  <% include partials/nav_admin.ejs %>
+<br><br>
 
-		<p>
-			Hệ Điều Hành:
-			<input type="text" name="os">
-		</p>
+      <div class="rowbody">
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Thông số kỹ thuật</h4>
+          <form class="needs-validation" novalidate method="POST" action="/admin/add-product">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="Name">Tên máy</label>
+                <input type="text" class="form-control" id="Name" name="name" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="screen">Màn hình</label>
+                <input type="text" class="form-control" id="screen" name="screen"  required>
+              </div>
+            </div>
 
-		<p>
-			Camera sau:
-			<input type="text" name="backCamera">
-		</p>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="HDH">Hệ Điều Hành</label>
+                <input type="text" class="form-control" id="HDH" name="os" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="CPU">CPU</label>
+                <input type="text" class="form-control" id="CPU" name="cpu"  required>
+              </div>
+            </div>
 
-		<p>
-			Camera trước:
-			<input type="text" name="frontCamera">
-		</p>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="frontCamera">Camera trước</label>
+                <input type="text" class="form-control" id="frontCamera" name="frontCamera" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="backCamera">Camera sau</label>
+                <input type="text" class="form-control" id="backCamera" name="backCamera"  required>
+              </div>
+            </div>
 
-		<p>
-			CPU:
-			<input type="text" name="cpu">
-		</p>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="RAM">RAM</label>
+                <input type="text" class="form-control" id="RAM" name="ram" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="memory">Bộ Nhớ Trong</label>
+                <input type="text" class="form-control" id="memory" name="memory"  required>
+              </div>
+            </div>
 
-		<p>
-			RAM:
-			<input type="text" name="ram">
-		</p>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="SIM">Thẻ SIM</label>
+                <input type="text" class="form-control" id="SIM" name="sim" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="battery">Dung Lượng Pin</label>
+                <input type="text" class="form-control" id="battery" name="battery"  required>
+              </div>
+            </div>
 
-		<p>
-			Bộ Nhớ Trong:
-			<input type="text" name="memory">
-		</p>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="price">Giá sản phẩm</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="imgPath">Ảnh</label>
+                <input type="text" class="form-control" id="imgPath" name="imgPath"  required>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">ADD</button>
+          </form>
+        </div>
+      </div>
 
-		<p>
-			Thẻ SIM:
-			<input type="text" name="sim">
-		</p>
 
-		<p>
-			Dung Lượng Pin:
-			<input type="text" name="battery">
-		</p>
 
-		<p>
-			Giá Sản Phẩm:
-			<input type="text" name="price">
-		</p>
 
-		<p>
-			Ảnh:
-			<input type="text" name='imgPath' />
-		</p>
+    <footer class="container py-5">
+      <hr>
+      <div class="row">
+        <div class="col-12 col-md">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+          <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Features</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Cool stuff</a></li>
+            <li><a class="text-muted" href="#">Random feature</a></li>
+            <li><a class="text-muted" href="#">Team feature</a></li>
+            <li><a class="text-muted" href="#">Stuff for developers</a></li>
+            <li><a class="text-muted" href="#">Another one</a></li>
+            <li><a class="text-muted" href="#">Last time</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Resource</a></li>
+            <li><a class="text-muted" href="#">Resource name</a></li>
+            <li><a class="text-muted" href="#">Another resource</a></li>
+            <li><a class="text-muted" href="#">Final resource</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Business</a></li>
+            <li><a class="text-muted" href="#">Education</a></li>
+            <li><a class="text-muted" href="#">Government</a></li>
+            <li><a class="text-muted" href="#">Gaming</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Team</a></li>
+            <li><a class="text-muted" href="#">Locations</a></li>
+            <li><a class="text-muted" href="#">Privacy</a></li>
+            <li><a class="text-muted" href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 
-		<p>
-			<button type="submit">Add</button>
-		</p>
-	</form>
+
+
+    <!-- fixed down -->
+<!--       <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Fixed down</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav> --> <!-- End Fixed down -->
+  <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+  <script type="text/javascript" src="/js/popper.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/holder.min.js"></script>
+  <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
 </body>
 </html>

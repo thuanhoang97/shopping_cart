@@ -1,58 +1,160 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta charset="utf-8">
-	<title>Cart</title>
-	<link rel="shortcut icon" href="img/eyes.jpg">
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Home</title>
+  <link rel="shortcut icon" href="/img/eyes.jpg">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
   <link href="/css/product.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/stylehome.css">
 
-
-	<script type=”text/javascript”>
-
-funciton btnClick(){
-  var span = document.createElement('span');
-
-  var i=””;// dùng để lưu những thông tin lỗi mà người dùng mắc phải
-  var hoten = document.getElementById(‘name’);// khai báo biến họ tên lấy theo địa chỉ id là name.
-  if(hoten.value == “”)// kiểm tra hoten có bỏ trống không
-  {
-    span.innerHTML = 'thong tin dc yeu cau'
-  }
-
-  var pass = document.getElementById(‘pass’);
-  if(pass.value !=””){
-    if(pass.value.length<6 pass.value.length >20)
-      i+= “Password phải có độ dài từ 6-20 ký tự.<br/>”;
-    }
-  else
-  i+=”Password không được bỏ trống.<br/>”;
-}// btnClick() tương ứng với tên sự kiện onclick trong thẻ input
-
-funciton btnThoat(){}
-</script>
-
-
+  
 </head>
 <body class="text-center">
   <!-- Fixed Top -->
-  <% include partials/nav.ejs %>
+  <%include partials/nav.ejs %>
+<br><br>
 
-  <% if(products.length>0) {%>
-    <% for(var i=0; i<products.length; i++) { %>
-      <p><%= products[i].name %></p>
-      <p><%= products[i].price %></p>
-      <p><%= products[i].date %></p><br/>
-    <% }%>
-  <%  }%>
+<h2 class="text-center">Cart</h2>
+<div class="container"> 
+ <table id="cart" class="table table-hover table-condensed"> 
+  <thead> 
+   <tr> 
+    <th style="width:50%">Tên sản phẩm</th> 
+    <th style="width:10%">Giá</th> 
+    <th style="width:8%">Ngày đặt hàng</th> 
+   <!--  <th style="width:22%" class="text-center">Thành tiền</th>  -->
+    <th style="width:10%"> </th> 
+   </tr> 
+  </thead> 
+  <tbody>
+   <!--  <tr> 
+   <td data-th="Product"> 
+    <div class="row"> 
+     <div class="col-sm-2 hidden-xs"><img src="/img/iphone10.jpg" alt="Sản phẩm 1" class="img-responsive" width="100">
+     </div> 
+     <div class="col-sm-10"> 
+      <h4 class="nomargin">Sản phẩm 1</h4> 
+      <p>Mô tả của sản phẩm 1</p> 
+     </div> 
+    </div> 
+   </td> 
+   <td data-th="Price">200.000 đ</td> 
+   <td data-th="Quantity"><input class="form-control text-center" value="1" type="number">
+   </td> 
+   <td data-th="Subtotal" class="text-center">200.000 <span>đ</span></td> 
+   <td class="actions" data-th="">
+    <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o">Del</i>
+    </button>
+   </td>  -->
+  
+  <%var sum = 0%>
+  <%if(products.length>0){%>
+    
+    <%for(var i=0; i<products.length; i++){%>
+      <%sum+=products[i].price%>
+       <tr> 
+       <td data-th="Product"> 
+        <div class="row"> 
+         <div class="col-sm-2 hidden-xs"><img src="/img/<%= products[i].imgPath%>" class="img-responsive" width="100">
+         </div> 
+         <div class="col-sm-10"> 
+          <h4 class="nomargin"><%= products[i].name%></h4> 
+          <!-- <p>Mô tả của sản phẩm 1</p>  -->
+         </div> 
+        </div> 
+       </td> 
+       <td data-th="Price"><%= products[i].price.toLocaleString()%><span>VND</span></td> 
+       <td data-th="Quantity"><%= products[i].date%></td> 
+       <td class="actions" data-th="">
+        <form method="POST" action="/del-from-cart/<%=products[i].date%>">
+          <button class="btn btn-danger btn-sm" onclick="$(this).closest('form').submit()>
+        <i class="fa fa-trash-o">Del</i>
+        </button>
+        </form>
+       </td> 
+       </tr> 
+    <%}%>
+  <%}%>
+
+  </tbody>
+  <tfoot>  
+   <tr> 
+    <td><a href="/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
+    </td>
+    <td><a href="/<%=locals.user.id%>/cart" class="btn btn-warning"><i class="fa fa-angle-left"></i> Cập nhật đơn hàng</a></td> 
+    <td colspan="2" class="hidden-xs"> </td> 
+    <td class="hidden-xs text-center"><strong>Tổng tiền <%= sum.toLocaleString()%> VND</strong>
+    </td> 
+    <td><a href="http://hocwebgiare.com/" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a>
+    </td> 
+   </tr> 
+  </tfoot> 
+ </table>
+</div>
+
+
+    <footer class="container py-5">
+      <hr>
+      <div class="row">
+        <div class="col-12 col-md">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+          <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Features</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Cool stuff</a></li>
+            <li><a class="text-muted" href="#">Random feature</a></li>
+            <li><a class="text-muted" href="#">Team feature</a></li>
+            <li><a class="text-muted" href="#">Stuff for developers</a></li>
+            <li><a class="text-muted" href="#">Another one</a></li>
+            <li><a class="text-muted" href="#">Last time</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Resource</a></li>
+            <li><a class="text-muted" href="#">Resource name</a></li>
+            <li><a class="text-muted" href="#">Another resource</a></li>
+            <li><a class="text-muted" href="#">Final resource</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Business</a></li>
+            <li><a class="text-muted" href="#">Education</a></li>
+            <li><a class="text-muted" href="#">Government</a></li>
+            <li><a class="text-muted" href="#">Gaming</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Team</a></li>
+            <li><a class="text-muted" href="#">Locations</a></li>
+            <li><a class="text-muted" href="#">Privacy</a></li>
+            <li><a class="text-muted" href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 
 
 
+    <!-- fixed down -->
+<!--       <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Fixed down</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav> --> <!-- End Fixed down -->
   <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
   <script type="text/javascript" src="/js/popper.min.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>

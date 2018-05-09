@@ -22,12 +22,14 @@ exports.logout = function(req, res){
 };
 
 exports.addProductForm = function(req, res){
-	res.render('product_specs');
+	var adminLogin  = req.session.adminLogin;
+	res.render('product_specs', {adminLogin:adminLogin});
 };
 
 exports.addProduct = function(req, res){
 	console.log(req.body);
 	var newProduct = req.body;
+	newProduct.price = Number(newProduct.price.replace(/\./g,''));
 
 	Product.save(newProduct, function(err){
 		if(err){
