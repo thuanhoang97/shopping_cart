@@ -1,5 +1,6 @@
-var User = require('../lib/user');
-var UserInfo = require('../lib/user_info');
+var User = require('../model/User');
+var Order = require('../model/Order');
+var UserInfo = require('../model/UserInfo');
 
 
 var getCurrentDate = function(){
@@ -12,17 +13,17 @@ var getCurrentDate = function(){
 		+  date.getSeconds();
 };
 
+
 exports.login = function(req, res){
 	var email = req.body.email;
 	var password = req.body.password;
 
-	User.login(email, password, function(err, user){
-		if(err){
-			req.session.warning = {type: 'login', msg: err};
+	User.getByEmail(email, function(user){
+		if(user == null){
+			req.session.warning = {type: 'login', msg: 'Email is not exists!'};
 			res.redirect('/login-register');
 		}else{
-			req.session.user = user;
-			console.log(user);
+			req.session.user = {id: user.id, email: user.email};
 			res.redirect('/');
 		}
 	});
@@ -35,35 +36,42 @@ exports.logout = function(req, res){
 };
 
 exports.register = function(req, res){
-	// console.log(req.body);
 	var newUser = req.body;
+	console.log(newUser);
 
-	User.register(newUser, function(err){
+	User.checkNewUser(newUser, function(err){
 		if(err){
-			req.session.warning = {type:'register', msg: err};
+			req.session.warning = {type: 'register', msg: err};
 			res.redirect('/login-register');
 		}else{
-			User.save(newUser.email, newUser.password, function(user){
-				// var userInfo = new UserInfo(newUser.phone, newUser.username);
-				// console.log(userInfo);
-				user.saveInfo(newUser);
-				req.session.user = {id: user.id, email: newUser.email};
+			User.createNewUser(newUser, function(userId){
+				req.session.user = {id: userId, email: newUser.email};
 				res.redirect('/');
 			});
 		}
 	});
 };
 
+
 exports.addToCart= function(req, res){
 	if(req.session.user){
+		var orderInfo = req.body;
+		orderInfo.price = Number(orderInfo.price.replace(/\,/g,''));
+		console.log(orderInfo);
 		var user  = new User(req.session.user.id);
-		var productId = req.params.id;
-		var today = getCurrentDate();
-		user.buy(productId, today, function(err){
-			if(err)
-				console.log(err);
-			else
-				res.redirect('/'+ user.id + '/cart');
+		var order = new Order(user.id, orderInfo.productId,orderInfo.number, orderInfo.price);
+		Order.createId(function(id){
+			order.setId(id);
+			console.log(order);
+			user.buy(order, function(err){
+				if(err){
+					console.log(err);
+					res.redirect('/');
+				}else{
+					res.redirect('/' + user.id + '/cart');
+				}
+				
+			});
 		});
 	}else{
 		res.redirect('/login-register');
@@ -72,10 +80,9 @@ exports.addToCart= function(req, res){
 }
 
 exports.delFromCart = function(req,res){
-	console.log(req.params.date);
-	var date = req.params.date;
+	var orderId = req.params.orderId;
 	var user = new User(req.session.user.id);
-	user.unBuy(date, function(err){
+	user.unBuy(orderId, function(err){
 		if(err){
 			console.log(err);
 			res.redirect('/');
@@ -88,15 +95,7 @@ exports.delFromCart = function(req,res){
 exports.showCart = function(req, res){
 	var user = new User(req.session.user.id);
 	user.getListProducts(function(err, products){
-		if(err){
-			console.log(err);
-			res.redirect('/');
-		}else{
-			// console.log(products);
-			res.render('cart',{
-				session:req.session,
-				products:products,
-			});
-		}
+		if(!err)
+			res.render('cart',{products: products});
 	});
 };

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<title>View Orders</title>
+	<link rel="shortcut icon" href="/img/eyes.jpg">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+  <link href="/css/product.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/styleorder.css">
+	
+</head>
+<body class="text-center">
+	<!-- Fixed Top -->
+	   
+    <% include partials/nav_admin.ejs %>
+
+    <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Mã đơn hàng</th>
+                  <th>Tên người đặt</th>
+                  <th>Sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Ngày</th>
+                  <th>Trạng thái</th>
+                  <th>Giá</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i=0; i< orders.length; i++) {%>
+                  <tr>
+                <form method="POST" action="process-order">
+                  <td><%=orders[i].id.toUpperCase()%></td>
+                  <td><%=orders[i].username%></td>
+                  <td><%=orders[i].productName%></td>
+                  <td><%=orders[i].number%></td>
+                  <td><%=orders[i].date.toLocaleString()%></td>
+                  <td><%=(orders[i].state)?"Đã giao":"Đang chờ"%></td>
+                  <td><%=orders[i].price.toLocaleString()%> <e> VND</e></td>
+                 <input type="hidden" name="orderId" value="<%=orders[i].id%>">
+                  <td><button type="submit" 
+                    <% if(orders[i].state){%> 
+                      disabled=""
+                    <% }%>
+                    >Xuất hàng</button></td>
+                 
+                  </form>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+
+
+    <!-- fixed down -->
+<!--       <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Fixed down</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav> --> <!-- End Fixed down -->
+	<script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+  <script type="text/javascript" src="/js/popper.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/holder.min.js"></script>
+  <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
+</body>
+</html>

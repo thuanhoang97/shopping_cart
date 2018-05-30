@@ -2,7 +2,7 @@ var express= require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var session = require('express-session');
-var database = require('./lib/database');
+var database = require('./database');
 var routes = require('./routes');
 
 
@@ -41,18 +41,24 @@ database.init(function(err){
 		app.get('/admin', routes.admin.form);
 		app.post('/admin/login', routes.admin.login);
 		app.get('/admin/logout', routes.admin.logout);
-		app.get('/admin/add-product', routes.admin.addProductForm);
-		app.post('/admin/add-product', routes.admin.addProduct);
+		app.get('/admin/:type/add', routes.admin.addProductForm);
+		app.get('/admin/view-orders', routes.admin.viewOrders);
+		app.get('/admin/view-warehouse',routes.admin.viewWarehouse);
+		app.post('/admin/add/:type', routes.admin.addProduct);
+		app.post('/admin/process-order', routes.admin.processOrder);
 
 		app.get('/login-register', routes.loginRegisterForm);
 		app.get('/:id/cart', routes.user.showCart);
 		app.post('/login', routes.user.login);
 		app.post('/register', routes.user.register);
 		app.post('/logout', routes.user.logout);
-		app.post('/add-to-cart/:id', routes.user.addToCart);
-		app.post('/del-from-cart/:date', routes.user.delFromCart);
+		app.post('/add-to-cart', routes.user.addToCart);
+		app.post('/del-from-cart/:orderId', routes.user.delFromCart);
 
-		app.get('/product/:name', routes.productForm);
+
+		app.get('/product/:type/:name', routes.productForm);
+
+		app.get('/view/:type', routes.viewProduct);
 
 		app.listen(1997, function(){
 		console.log('Server is running on port 1997...');

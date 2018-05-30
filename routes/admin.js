@@ -1,5 +1,6 @@
 var path = require('path')
-var Product = require('../lib/product');
+var Product = require('../model/Product');
+var Order = require('../model/Order');
 
 
 exports.form = function(req, res){
@@ -22,21 +23,43 @@ exports.logout = function(req, res){
 };
 
 exports.addProductForm = function(req, res){
-	var adminLogin  = req.session.adminLogin;
-	res.render('product_specs', {adminLogin:adminLogin});
+	var type = req.params.type ;
+	console.log(type);
+	res.render('addproduct', {type: type});
 };
 
 exports.addProduct = function(req, res){
-	console.log(req.body);
+	var type = req.params.type;
 	var newProduct = req.body;
 	newProduct.price = Number(newProduct.price.replace(/\./g,''));
-
-	Product.save(newProduct, function(err){
+	// console.log(newProduct);
+	Product.save(newProduct, type, function(err){
 		if(err){
-			console.log(err);
-			res.redirect('/admin/add-product');
+			res.redirect('/admin/'+ type +'/add');
 		}else{
 			res.redirect('/admin');
 		}
 	});
+	
 };
+
+exports.viewOrders = function(req, res){
+	Order.getAll(function(err, orders){
+		if(!err)
+			res.render('view_orders', {orders: orders});
+	});
+}
+
+exports.processOrder = function(req, res){
+	var orderId = req.body.orderId;
+	Order.processed(orderId, function(err){
+		if(err)
+			console.log(err);
+		res.redirect('/admin/view-orders');
+	})
+	
+}
+
+exports.viewWarehouse = function(req, res){
+	res.render('warehouse');
+}

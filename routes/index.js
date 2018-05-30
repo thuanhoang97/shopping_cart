@@ -1,15 +1,14 @@
 var path = require('path');
-var Product= require('../lib/Product');
+var Product= require('../model/Product');
 
 
-// exports.login = require('./login');
-// exports.register = require('./register');
 exports.admin = require('./admin');
 exports.user = require('./user');
 
 
 exports.getSession = function(req, res, next){
-	res.locals.user = req.session.user || null;
+	res.locals.user = req.session.user;
+	res.locals.adminLogin = req.session.adminLogin;
 	next();
 };
 
@@ -26,16 +25,21 @@ exports.home = function(req, res){
 
 exports.productForm = function(req, res){
 	var productName = req.params.name;
+	var type = req.params.type;
+	console.log(type + " " + productName);
 	Product.getIdByName(productName, function(id){
 		if(id){
 			var product = new Product(id);
-			product.retrieveInfo(function(err){
+			product.getData(function(err){
 				if(!err){
-					product.retrieveSpecs(function(err){
-						product.price = product.price.toLocaleString();
-						res.render('product',{
-							product: product
-						});
+					product.getSpecs(type,function(err){
+						if(!err){
+							product.price = product.price.toLocaleString();
+							res.render('product',{
+								type: type,
+								product: product
+							});
+						}
 					});
 				}
 			});
@@ -45,3 +49,20 @@ exports.productForm = function(req, res){
 
 	});
 };
+
+exports.viewProduct = function(req, res){
+	var type = req.params.type;
+	console.log(type);
+	Product.getProductByType(type, function(err, products){
+		if(err){
+			console.log();
+			res.redirect('/');
+		}else{
+			for(var i=0; i<products.length;i++){
+				console.log(products[i]);
+			}
+			res.render('view_products', {type: type, products: products});
+		}
+	});
+
+}

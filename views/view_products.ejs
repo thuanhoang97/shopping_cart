@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Home</title>
+  <link rel="shortcut icon" href="/img/eyes.jpg">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+  <link href="/css/product.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/styleiphonex.css">
+  
+</head>
+<body class="text-center">
+  <!-- Fixed Top -->
+   <% include partials/nav.ejs %>
+
+  <% for(var i=0; i< products.length; i++){ %>
+  <div class="color-part2 position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+      <a href="#" class="black">
+      <div class="editIpX col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 font-weight-normal"><%= products[i].name%></h1>
+        <div class="links">
+          <a href="/product/<%= type %>/<%= products[i].name%>" class="more">Buy</a>
+        </div>
+      </div>
+      </a>
+      <div>
+          <a href=""><img src="/img/<%= products[i].imgPath%>"></a>
+      </div>
+    </div>
+    <br><br>
+<% } %>
+  

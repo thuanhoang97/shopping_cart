@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<title>Warehouse</title>
+	<link rel="shortcut icon" href="/img/eyes.jpg">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+  <link href="/css/product.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/stylewarehouse.css">
+	
+</head>
+<body class="text-center">
+	 <% include partials/nav_admin.ejs %>
+	
+    <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Tên</th>
+                  <th>Số lượng</th>
+                  <th>Ngày</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1,001</td>
+                  <td>Lorem</td>
+                  <td>ipsum</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+<hr><hr>
+<form class="text-center form-signin">
+<span class="labelNP">Tên sản phẩm:</span>
+<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle editdropdown" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+<span class="labelNP">Số lượng:</span>
+          <input type="text" name="quantity" class="quantity"><br><br>
+          <button class="btn btn-lg btn-primary btn-block size" type="submit">Update</button>
+</form>
+    <!-- fixed down -->
+<!--       <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Fixed down</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav> --> <!-- End Fixed down -->
+	<script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+  <script type="text/javascript" src="/js/popper.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/holder.min.js"></script>
+  <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
+</body>
+</html>

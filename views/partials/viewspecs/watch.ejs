@@ -1,0 +1,20 @@
+<div class="right-column">
+  
+    <!-- Product Description -->
+    <div class="product-description">
+      <h1><%=product.name %></h1>
+    </div>
+    <div class="text-left">
+      <h4>Thông số kỹ thuật</h4>
+      <ul class="parameter">
+            <li class="g6459_79_77"><span>Màn hình:</span><div><%= product.specs.screen %></div></li>
+            <li class="g72"><span>Kính cường lực:</span><div><%= (product.specs.glass)?"Yes":"No"%></div></li>
+            <li class="g6059"><span>Chất liệu:</span><div><%= product.specs.material %></div></li>
+            <li class="g50"><span>Chống nước:</span><div><%= (product.specs.waterproof)?"Yes":"No"%></div></li>
+            <li class="g49"><span>Thiết bị kết nối:</span><div><%= product.specs.deviceConnect %></div></li>
+            <li class="g6339_6463"><span>Thời gian sử dụng:</span><div><%= product.specs.timeUse %></div></li>
+            
+        </ul>
+
+    </div>
+  

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,82 +5,36 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
-  <title>Cart</title>
+  <title>add product</title>
   <link rel="shortcut icon" href="/img/eyes.jpg">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
   <link href="/css/product.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/css/stylecart.css">
+  <link rel="stylesheet" type="text/css" href="/css/product_specs.css">
 
   
 </head>
 <body class="text-center">
-   <% include partials/nav.ejs %>
+  <!-- Fixed Top -->
+  <% include partials/nav_admin.ejs %>
 <br><br>
 
-<h2 class="text-center">Cart</h2>
-<div class="size-table"> 
- <table id="cart" class="table table-hover table-condensed"> 
-  <thead> 
-   <tr> 
-    <th style="width:50%">Tên sản phẩm</th> 
-    <th style="width:10%">Giá</th> 
-    <th style="width:8%">Số lượng</th> 
-    <th style="width:22%" class="text-center">Thành tiền</th> 
-    <th style="width:22%" class="text-center">Ngày đặt hàng</th> 
-    <th style="width:22%" class="text-center">Mã đơn hàng</th> 
-    <th style="width:10%"> </th> 
-   </tr> 
-  </thead> 
-  <tbody>
-    <% for(var i=0; i<products.length;i++){ %>
-      <tr> 
-       <td data-th="Product"> 
-        <div class="row"> 
-         <div class="col-sm-2 hidden-xs"><img src="/img/<%= products[i].imgPath%>" alt="<%= products[i].name %>" class="img-responsive" width="100">
-         </div> 
-         <div class="col-sm-10"> 
-          <h4 class="nomargin"><%= products[i].name %></h4> 
-         </div> 
-        </div> 
-       </td> 
-       <td data-th="Price"><%= products[i].price.toLocaleString() %><e> VND</e></td> 
+      <div class="rowbody">
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Thông số kỹ thuật</h4>
+         <% if(type === 'iphone'){ %>
+            <% include partials/addspecs/iphonespecs.ejs %>
+         <% }else if(type ==='ipad'){ %>
+            <% include partials/addspecs/ipadspecs.ejs %>
+         <% }else if(type ==='mac'){%>
+          <% include partials/addspecs/macspecs.ejs %>
+         <% }else if(type ==='watch'){%>
+          <% include partials/addspecs/watchspecs.ejs %>
+         <% }%>
+        </div>
+      </div>
 
 
-       <!-- Số lượng ****************************-->
-       <td data-th="Quantity"><p><%= products[i].number %></p></td> 
-
-
-
-       <td data-th="Subtotal" class="text-center"><%= products[i].total.toLocaleString() %><span><e> VND</e></span></td> 
-        <td data-th="date" class="text-center"><%= products[i].date.toLocaleString() %><span><e></e></span></td>
-       <td data-th="orderId" class="text-center"><%= products[i].id.toUpperCase() %><span><e></e></span></td>
-       <td class="actions" data-th="">
-        <form method="POST" action="/del-from-cart/<%=products[i].id%>">
-          <button class="btn btn-danger btn-sm" onclick="$(this).closest('form').submit()>
-        <i class="fa fa-trash-o">Del</i>
-        </button>
-        </form>
-       </td> 
-    </tr> 
-    <% }%>
-  <tr>
-      <td colspan="6"><a href="/<%= locals.user.id%>/cart" class="btn btn-warning"><i class="fa fa-angle-left"></i> Cập nhật đơn hàng</a></td>
-  </tr> 
-  </tbody>
-  <tfoot>  
-   <tr> 
-    <td><a href="/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
-    </td> 
-    <td colspan="2" class="hidden-xs"> </td> 
-    <td class="hidden-xs text-center"><strong>Tổng tiền 500.000 đ</strong>
-    </td> 
-    <td><a href="http://hocwebgiare.com/" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a>
-    </td> 
-   </tr> 
-  </tfoot> 
- </table>
-</div>
 
 
     <footer class="container py-5">

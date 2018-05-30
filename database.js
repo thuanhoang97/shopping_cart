@@ -13,7 +13,7 @@ exports.query = function(STRING_QUERY, cb){
 
 exports.init = function(cb){
 	var createUserInfoTable = function(){
-		var CREATE_USER_INFO_TABLE = 'CREATE TABLE IF NOT EXISTS shoppingdb.user_info('
+		var CREATE_USER_INFO_TABLE = 'CREATE TABLE IF NOT EXISTS shoppingdb.userInfo('
 						+'id INT NOT NULL PRIMARY KEY,'
 						+'username  VARCHAR(60) NOT NULL,'
 						+'phone VARCHAR(12) NOT NULL,'
@@ -43,23 +43,85 @@ exports.init = function(cb){
 		});
 	};
 
-	var createProductSpecsTable = function(){
-		var CREATE_PRODUCT_SPECS_TABLE = 'CREATE TABLE IF NOT EXISTS shoppingdb.product_specs('
+	var createIphoneSpecsTable = function(){
+		var CREATE_PRODUCT_SPECS_TABLE = 'CREATE TABLE IF NOT EXISTS shoppingdb.iPhoneSpecs('
 						+ 'productId INT NOT NULL PRIMARY KEY,'
-						+ 'screen VARCHAR(30) NOT NULL,'
-						+ 'os VARCHAR(20) NOT NULL,'
+						+ 'screen VARCHAR(60) NOT NULL,'
+						+ 'os VARCHAR(30) NOT NULL,'
 						+ 'backCamera VARCHAR(20) NOT NULL,'
 						+ 'frontCamera VARCHAR(20) NOT NULL,'
-						+ 'cpu VARCHAR(30) NOT NULL,'
-						+ 'ram VARCHAR(10) NOT NULL,'
-						+ 'memory VARCHAR(10) NOT NULL,'
-						+ 'sim VARCHAR(20) NOT NULL,'
-						+ 'battery VARCHAR(30) NOT NULL,'
-						+ 'CONSTRAINT fk_product_id FOREIGN KEY(productId) ' 
+						+ 'cpu VARCHAR(60) NOT NULL,'
+						+ 'ram VARCHAR(60) NOT NULL,'
+						+ 'memory VARCHAR(60) NOT NULL,'
+						+ 'sim VARCHAR(60) NOT NULL,'
+						+ 'battery VARCHAR(60) NOT NULL,'
+						+ 'CONSTRAINT fk_iphone_specs_id FOREIGN KEY(productId) ' 
 						+ 'REFERENCES shoppingdb.product(id))';
 		connection.query(CREATE_PRODUCT_SPECS_TABLE, function(err, result){
 			if(err){
-				console.log('Cant not create product specs table');
+				console.log('Cant not create iphone specs table');
+				cb(err)
+			}
+		});
+	};
+
+	var createIpadSpecsTable = function(){
+		var CREATE_PRODUCT_SPECS_TABLE = 'CREATE TABLE IF NOT EXISTS shoppingdb.iPadSpecs('
+						+ 'productId INT NOT NULL PRIMARY KEY,'
+						+ 'screen VARCHAR(60) NOT NULL,'
+						+ 'os VARCHAR(30) NOT NULL,'
+						+ 'backCamera VARCHAR(20) NOT NULL,'
+						+ 'frontCamera VARCHAR(20) NOT NULL,'
+						+ 'cpu VARCHAR(60) NOT NULL,'
+						+ 'ram VARCHAR(60) NOT NULL,'
+						+ 'memory VARCHAR(60) NOT NULL,'
+						+ 'network VARCHAR(60) NOT NULL,'
+						+ 'CONSTRAINT fk_ipad_specs_id FOREIGN KEY(productId) ' 
+						+ 'REFERENCES shoppingdb.product(id))';
+		connection.query(CREATE_PRODUCT_SPECS_TABLE, function(err, result){
+			if(err){
+				console.log('Cant not create ipad specs table');
+				cb(err)
+			}
+		});
+	};
+
+
+	var createMacSpecsTable = function(){
+		var CREATE_PRODUCT_SPECS_TABLE = 'CREATE TABLE IF NOT EXISTS shoppingdb.macSpecs('
+						+ 'productId INT NOT NULL PRIMARY KEY,'
+						+ 'screen VARCHAR(60) NOT NULL,'
+						+ 'os VARCHAR(30) NOT NULL,'
+						+ 'cpu VARCHAR(60) NOT NULL,'
+						+ 'ram VARCHAR(60) NOT NULL,'
+						+ 'hardDrive VARCHAR(60) NOT NULL,'
+						+ 'connector VARCHAR(60) NOT NULL,'
+						+ 'design VARCHAR(60) NOT NULL,'
+						+ 'size VARCHAR(60) NOT NULL,'
+						+ 'CONSTRAINT fk_mac_specs_id FOREIGN KEY(productId) ' 
+						+ 'REFERENCES shoppingdb.product(id))';
+		connection.query(CREATE_PRODUCT_SPECS_TABLE, function(err, result){
+			if(err){
+				console.log('Cant not create mac specs table');
+				cb(err)
+			}
+		});
+	};
+
+	var createWatchSpecsTable = function(){
+		var CREATE_PRODUCT_SPECS_TABLE = 'CREATE TABLE IF NOT EXISTS shoppingdb.watchSpecs('
+						+ 'productId INT NOT NULL PRIMARY KEY,'
+						+ 'screen VARCHAR(60) NOT NULL,'
+						+ 'glass BOOLEAN NOT NULL,'
+						+ 'material VARCHAR(60) NOT NULL,'
+						+ 'waterproof BOOLEAN NOT NULL,'
+						+ 'deviceConnect VARCHAR(60) NOT NULL,'
+						+ 'timeUse VARCHAR(60) NOT NULL,'
+						+ 'CONSTRAINT fk_watch_specs_id FOREIGN KEY(productId) ' 
+						+ 'REFERENCES shoppingdb.product(id))';
+		connection.query(CREATE_PRODUCT_SPECS_TABLE, function(err, result){
+			if(err){
+				console.log('Cant not create watch specs table');
 				cb(err)
 			}
 		});
@@ -70,19 +132,24 @@ exports.init = function(cb){
 							+ 'id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,'
 							+ 'name VARCHAR(30)  NOT NULL,'
 							+ 'price DECIMAL(12,2) NOT NULL, '
-							+ 'imgPath TINYTEXT NOT NULL)';
+							+ 'imgPath TINYTEXT NOT NULL,'
+							+ 'type VARCHAR(10) NOT NULL)';
 		connection.query(CREATE_PRODUCT_TABLE, function(err, result){
 			if(err){
 				console.log('Can not create product table');
 				cb(err);
 			}else{
-				createProductSpecsTable();
+				createIphoneSpecsTable();
+				createIpadSpecsTable();
+				createMacSpecsTable();
+				createWatchSpecsTable();
 			}
 		});
 	};
 
 	var createOrdertable = function(){
-		var CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS shoppingdb.sale('
+		var CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS shoppingdb.orders('
+			+ 'id VARCHAR(10) NOT NULL PRIMARY KEY, '
 			+ 'userId INT NOT NULL, '
 			+ 'productId INT NOT NULL,'
 			+ 'state BOOLEAN DEFAULT false,'
@@ -111,7 +178,7 @@ exports.init = function(cb){
 			}else{
 				createUserTable();
 				createProductTable();
-				createSaletable();
+				createOrdertable();
 			}
 		});
 	};

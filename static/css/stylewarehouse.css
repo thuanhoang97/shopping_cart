@@ -1,0 +1,102 @@
+body {
+
+}
+
+a.login-register {
+	color: white!important;
+}
+a.black{
+	color: black!important;
+	text-decoration: none;
+}
+a.white{
+	text-decoration: none;
+	color: white!important;
+}
+
+div.editIpX {
+	margin-bottom: 0!important;
+	margin-top: 0!important;
+	padding-bottom: 0!important;
+	padding-top: 0!important;
+}
+
+h1.ipad {
+	font-size: 120px;
+}
+
+div.text-color{
+	color: black!important;
+	background-color: #FAFAFA;
+}
+div.text-color2{
+	color: black!important;
+	background-color: #EEEEEE;
+}
+h2 {
+	font-size: 42px;
+}
+
+div.color-part2{
+	background-color:  #FAFCFB;
+}
+
+div.background {
+	color: white!important;
+	width: 1262px;
+    height: 570px; 
+    background-size: 1262px 570px;
+    background-position: center;
+}
+img.edit-img{
+	padding-bottom: 1%;
+}
+div.d-md-flex{
+	height: 570px!important;
+}
+div.my-3{
+	margin:0!important;
+	padding: 0!important;
+}    
+div.text-color3{
+	color: white!important;
+	background: linear-gradient(to bottom, #498393 0%, #498393 10%, #98d8e8 100%);
+}
+h6.update{
+	color: #609BFE;
+	margin: 0;
+	margin-bottom: 1px;
+}
+h1.ios{
+	margin: 0;
+}
+p.under-update{
+	font-size: 23px;
+	margin-bottom: 10%;
+}
+p.under-update1{
+	font-size: 21px;
+	margin-bottom: 5%;
+}
+
+li.dropdown{
+	margin-left: 2%;
+	list-style-type: none;
+	float: left!important;
+}
+a.editdropdown{
+	padding: 0;
+}
+span.labelNP{
+	margin-left: 20%;
+	float: left;
+}
+input.quantity{
+	margin-left: 3%;
+	float: left;
+}
+button.size{
+	margin-left: 44%;
+	width: 10%;
+	height: 4%;
+}
